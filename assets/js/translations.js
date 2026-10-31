@@ -1,6 +1,6 @@
 ﻿window.YNAN_TRANSLATIONS = {
       en: {
-        brand_full: "Young Nurses Association of Nepal", nav_label: "Main navigation", nav_home: "Home", nav_about: "About YNAN", nav_priorities: "Our priorities", nav_stories: "From Facebook", nav_pathways: "Get involved", nav_contact: "Contact",
+        brand_full: "Young Nurses Association of Nepal", nav_label: "Main navigation", nav_home: "Home", nav_about: "About YNAN", nav_priorities: "Our priorities", nav_stories: "From Facebook", nav_pathways: "Get involved", nav_contact: "Connect with us",
         about_menu_overview: "Overview",
         hero_eyebrow: "Young Nurses Association of Nepal",
         hero_title: "A stronger voice for nurses in Nepal.",
@@ -99,7 +99,7 @@
         page_title: "YNAN | Young Nurses Association of Nepal", page_description: "Young Nurses Association of Nepal (YNAN) is a registered nonprofit dedicated to protecting, promoting and strengthening nurses in Nepal."
       },
       ne: {
-        brand_full: "यङ नर्सेस एसोसिएसन अफ नेपाल", nav_label: "मुख्य नेभिगेसन", nav_home: "गृहपृष्ठ", nav_about: "YNAN बारेमा", nav_priorities: "हाम्रा प्राथमिकता", nav_stories: "फेसबुकका झलकहरू", nav_pathways: "सहभागी बन्नुहोस्", nav_contact: "सम्पर्क",
+        brand_full: "यङ नर्सेस एसोसिएसन अफ नेपाल", nav_label: "मुख्य नेभिगेसन", nav_home: "गृहपृष्ठ", nav_about: "YNAN बारेमा", nav_priorities: "हाम्रा प्राथमिकता", nav_stories: "फेसबुकका झलकहरू", nav_pathways: "सहभागी बन्नुहोस्", nav_contact: "जोडिनुहोस्",
         about_menu_overview: "संक्षिप्त परिचय",
         hero_eyebrow: "यङ नर्सेस एसोसिएसन अफ नेपाल",
         hero_title: "नेपालका नर्सहरूको सशक्त आवाज।",
