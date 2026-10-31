@@ -150,8 +150,22 @@
     .contact-channel:first-child { border-top: 1px solid var(--line); }
     .contact-channel:hover { padding-inline: 9px; background: #DCEBE8; }
     .channel-icon { flex: 0 0 38px; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--paper); color: var(--green); font-family: var(--display); font-size: 21px; font-weight: 800; }
-    .channel-icon-youtube { color: #bd4d48; font-size: 14px; }
-    .channel-icon-tiktok { color: var(--ink); font-size: 22px; }
+    .channel-icon svg { display: block; width: 21px; height: 21px; }
+    .channel-icon-phone svg { fill: currentColor; }
+    .channel-icon-email svg { width: 23px; height: 23px; fill: none; stroke-width: 3; stroke-linecap: square; stroke-linejoin: round; }
+    .gmail-mark-red { stroke: #EA4335; }
+    .gmail-mark-blue { stroke: #4285F4; }
+    .gmail-mark-green { stroke: #34A853; }
+    .gmail-mark-yellow { stroke: #FBBC04; }
+    .channel-icon-facebook { color: #1877F2; }
+    .channel-icon-facebook svg { fill: currentColor; }
+    .channel-icon-youtube svg { width: 23px; height: 23px; }
+    .youtube-mark { fill: #FF0033; }
+    .youtube-play { fill: white; }
+    .channel-icon-tiktok svg { width: 22px; height: 22px; }
+    .tiktok-shadow-cyan { fill: #25F4EE; transform: translate(-.7px, .5px); }
+    .tiktok-shadow-pink { fill: #FE2C55; transform: translate(.6px, -.3px); }
+    .tiktok-mark { fill: #111; }
     .channel-copy { display: grid; flex: 1; gap: 1px; }
     .channel-copy strong { font-family: var(--display); font-size: 14px; }
     .channel-copy small { color: var(--muted); font-size: 12px; }
