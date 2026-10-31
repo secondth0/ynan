@@ -23,8 +23,13 @@ function setLanguage(language) {
 
   currentLanguage = language;
   document.documentElement.lang = language;
-  document.title = languageContent.page_title;
-  document.querySelector('meta[name="description"]').content = languageContent.page_description;
+  const titleKey = document.documentElement.dataset.titleKey || "page_title";
+  const descriptionKey = document.documentElement.dataset.descriptionKey || "page_description";
+  if (!languageContent[titleKey] || !languageContent[descriptionKey]) {
+    throw new Error(`Page metadata translations are missing for "${language}".`);
+  }
+  document.title = languageContent[titleKey];
+  document.querySelector('meta[name="description"]').content = languageContent[descriptionKey];
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.dataset.i18n;
@@ -176,6 +181,80 @@ if (carousel) {
   document.addEventListener("visibilitychange", scheduleCarousel);
 
   showSlide(0);
+}
+
+const panorama = document.querySelector(".vision-mission-panorama");
+const trailPath = document.getElementById("mission-trail-path");
+const missionLamp = document.getElementById("mission-lamp");
+
+if (panorama && trailPath && missionLamp) {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const compactLayout = window.matchMedia("(max-width: 920px)");
+  const mountainLayers = Array.from(panorama.querySelectorAll("[data-parallax]"));
+  let panoramaIsVisible = true;
+  let updateScheduled = false;
+
+  function setLampPosition(progress) {
+    const point = trailPath.getPointAtLength(trailPath.getTotalLength() * progress);
+    missionLamp.setAttribute("transform", `translate(${point.x} ${point.y})`);
+  }
+
+  function updatePanorama() {
+    updateScheduled = false;
+    if (reducedMotion.matches) {
+      setLampPosition(1);
+      mountainLayers.forEach((layer) => {
+        layer.style.transform = "";
+      });
+      return;
+    }
+
+    if (!panoramaIsVisible) {
+      return;
+    }
+
+    const bounds = panorama.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0,
+      (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)
+    ));
+    setLampPosition(progress);
+
+    if (compactLayout.matches) {
+      mountainLayers.forEach((layer) => {
+        layer.style.transform = "";
+      });
+      return;
+    }
+
+    const scrollOffset = Math.min(32, Math.max(-32, -bounds.top * 0.055));
+    mountainLayers.forEach((layer) => {
+      layer.style.transform = `translateY(${scrollOffset * Number(layer.dataset.parallax)}px)`;
+    });
+  }
+
+  function schedulePanoramaUpdate() {
+    if (updateScheduled) {
+      return;
+    }
+    updateScheduled = true;
+    window.requestAnimationFrame(updatePanorama);
+  }
+
+  if ("IntersectionObserver" in window) {
+    const panoramaObserver = new IntersectionObserver(([entry]) => {
+      panoramaIsVisible = entry.isIntersecting;
+      if (panoramaIsVisible) {
+        schedulePanoramaUpdate();
+      }
+    });
+    panoramaObserver.observe(panorama);
+  }
+
+  window.addEventListener("scroll", schedulePanoramaUpdate, { passive: true });
+  window.addEventListener("resize", schedulePanoramaUpdate);
+  reducedMotion.addEventListener("change", schedulePanoramaUpdate);
+  compactLayout.addEventListener("change", schedulePanoramaUpdate);
+  schedulePanoramaUpdate();
 }
 
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
