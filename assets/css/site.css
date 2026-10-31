@@ -31,8 +31,8 @@
     .brand-mark { display: block; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; object-fit: cover; }
     .site-header .brand { gap: 14px; }
     .site-header .brand-mark { width: 92px; height: 92px; border-radius: 50%; }
-    .brand-name { display: block; font-family: var(--display); font-size: 15px; line-height: 1.2; font-weight: 800; letter-spacing: .035em; }
-    .brand-full { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; line-height: 1.2; letter-spacing: .09em; text-transform: uppercase; }
+    .brand-name { display: block; font-family: var(--display); font-size: 20px; line-height: 1.2; font-weight: 800; letter-spacing: .035em; }
+    .brand-full { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; line-height: 1.2; letter-spacing: .09em; text-transform: uppercase; }
     .nav { display: flex; align-items: center; gap: clamp(18px, 2.5vw, 36px); }
     .nav a { color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 600; transition: color .2s ease; }
     .nav a:hover { color: var(--green); }
@@ -183,7 +183,10 @@
     [lang="ne"] .eyebrow { letter-spacing: .04em; }
 
     @media (max-width: 920px) {
-      .nav { gap: 10px; }
+      .brand-name { font-size: 17px; }
+      .brand-full { font-size: 9px; }
+      .header-inner { gap: 16px; }
+      .nav { gap: 8px; }
       .nav a { font-size: 11px; }
       .hero-grid { gap: 30px; }
       .carousel-stage { height: 340px; }
@@ -195,9 +198,11 @@
       .header-contact-inner { justify-content: center; gap: 8px; }
       .header-contact a { gap: 5px; font-size: 10px; }
       .header-inner { height: 96px; gap: 8px; }
+      .site-header .brand { min-width: 0; gap: 8px; }
+      .site-header .brand > span { min-width: 0; }
       .site-header .brand-mark { width: 72px; height: 72px; }
-      .brand-name { font-size: 13px; }
-      .brand-full { max-width: 135px; font-size: 7px; }
+      .brand-name { font-size: 17px; }
+      .brand-full { max-width: 155px; font-size: 9px; }
       .menu-button { display: grid; place-items: center; }
       .header-actions { gap: 8px; }
       .nav { position: absolute; top: 130px; right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: 8px 18px 14px; border-bottom: 1px solid var(--line); background: var(--paper); box-shadow: 0 16px 22px rgba(11,37,69,.08); }
