@@ -53,6 +53,7 @@ function setLanguage(language) {
     window.ynanProvinceState.renderActiveProvince();
   }
 
+  window.dispatchEvent(new CustomEvent("ynan:languagechange", { detail: { language } }));
   languageButton.dataset.language = language;
   languageButton.setAttribute("aria-label", languageContent.language_aria);
   menuButton.setAttribute(

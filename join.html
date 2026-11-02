@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en" data-title-key="join_page_title_meta" data-description-key="join_page_description">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B2545">
+  <meta name="description" content="Apply to become a member of the Young Nurses Association of Nepal.">
+  <title>Become a Member | YNAN</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-contact">
+      <div class="container header-contact-inner">
+        <a href="tel:+9779740316835" aria-label="Call YNAN: +977 9740316835" data-i18n="header_phone_aria" data-i18n-attribute="aria-label"><span data-i18n="phone_channel_label">Call YNAN</span><span>+977 9740316835</span></a>
+        <a href="mailto:ynursesassociation@gmail.com" aria-label="Email YNAN: ynursesassociation@gmail.com" data-i18n="header_email_aria" data-i18n-attribute="aria-label"><span data-i18n="email_channel_label">Email</span><span>ynursesassociation@gmail.com</span></a>
+      </div>
+    </div>
+    <div class="container header-inner">
+      <a class="brand" href="index.html#home" aria-label="YNAN home">
+        <img class="brand-mark" src="assets/ynan-logo.jpg" alt="" width="42" height="42">
+        <span><span class="brand-name">YNAN</span><span class="brand-full" data-i18n="brand_full">Young Nurses Association of Nepal</span></span>
+      </a>
+      <nav class="nav" id="main-nav" aria-label="Main navigation" data-i18n="nav_label" data-i18n-attribute="aria-label">
+        <a href="index.html#home" data-i18n="nav_home">Home</a>
+        <div class="nav-about-group">
+          <a href="about.html" data-i18n="nav_about">About YNAN</a>
+          <div class="nav-about-menu">
+            <a href="about.html#about-overview" data-i18n="about_menu_overview">Overview</a>
+            <a href="about.html#vision" data-i18n="about_page_vision_label">Our vision</a>
+            <a href="about.html#mission" data-i18n="about_page_mission_label">Our mission</a>
+            <a href="about.html#objectives" data-i18n="about_page_objectives_label">Our objectives</a>
+            <a href="about.html#activities" data-i18n="about_page_activities_label">Our activities</a>
+            <a href="about.html#why-join" data-i18n="about_page_join_label">Why join YNAN?</a>
+          </div>
+        </div>
+        <a class="nav-member-link" href="join.html" data-i18n="join_nav">Become a Member</a>
+        <a href="index.html#contact" data-i18n="nav_contact">Connect with us</a>
+      </nav>
+      <div class="header-actions">
+        <button class="language-button" id="language-toggle" type="button" aria-label="Switch to Nepali">
+          <span class="language-option" data-language-option="en"><svg class="language-flag" viewBox="0 0 60 40" aria-hidden="true"><path fill="#012169" d="M0 0h60v40H0z"/><path fill="#fff" d="m0 0 60 40v-6L9 0zm60 0L0 40v-6L51 0z"/><path fill="#C8102E" d="m0 0 60 40v-3L5 0zm60 0L0 40v-3L55 0z"/><path fill="#fff" d="M24 0h12v40H24zM0 14h60v12H0z"/><path fill="#C8102E" d="M26 0h8v40h-8zM0 16h60v8H0z"/></svg><span>EN</span></span>
+          <span class="language-option" data-language-option="ne"><img class="language-flag language-flag-nepal" src="assets/images/nepal-flag.png" alt=""><span>ने</span></span>
+        </button>
+        <button class="menu-button" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <main class="membership-page">
+    <div class="container">
+      <div class="membership-heading">
+        <span class="eyebrow" data-i18n="join_eyebrow">Join our community</span>
+        <h1 data-i18n="join_title">Become a Member</h1>
+        <p data-i18n="join_intro">Nursing students, new graduates and practicing nurses can apply. Share a few details so our membership team can get in touch.</p>
+      </div>
+      <div class="membership-panel">
+        <p class="membership-required-note" data-i18n="join_required_note">Fields marked required must be completed.</p>
+        <div class="form-error-summary" id="form-error-summary" role="alert" tabindex="-1" hidden>
+          <h2 data-i18n="join_form_error_title">Please check the following:</h2>
+          <ul id="error-list"></ul>
+        </div>
+        <div class="form-status" id="form-status" role="status" aria-live="polite" tabindex="-1" hidden>
+          <strong id="form-status-title" data-i18n="join_success_title" hidden>Application sent!</strong>
+          <p id="form-status-message"></p>
+          <p id="form-status-followup" data-i18n="join_success_followup" hidden>Thank you for applying. Our membership team will review your application and get in touch.</p>
+        </div>
+        <form class="membership-form" id="membership-form" novalidate>
+          <div class="form-field">
+            <label for="full-name" data-i18n="join_name">Full name</label>
+            <input id="full-name" name="fullName" type="text" autocomplete="name" maxlength="120" required aria-required="true" aria-describedby="error-full-name">
+            <span class="field-error" id="error-full-name" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <fieldset class="age-choice" id="age-choice">
+              <legend data-i18n="join_age_label">Age or date of birth</legend>
+              <label><input type="radio" name="ageMode" value="age" checked><span data-i18n="join_age_choice">Age</span></label>
+              <label><input type="radio" name="ageMode" value="dob"><span data-i18n="join_dob_choice">Date of birth</span></label>
+            </fieldset>
+            <div id="age-input-wrap">
+              <label for="age" data-i18n="join_age">Age in years</label>
+              <input id="age" name="age" type="number" inputmode="numeric" min="15" max="100" step="1" autocomplete="off" required aria-required="true" aria-describedby="error-age">
+              <span class="field-error" id="error-age" aria-live="polite"></span>
+            </div>
+            <div id="dob-input-wrap" hidden>
+              <label for="date-of-birth" data-i18n="join_dob">Date of birth</label>
+              <input id="date-of-birth" name="dateOfBirth" type="date" autocomplete="bday" aria-describedby="error-date-of-birth">
+              <span class="field-error" id="error-date-of-birth" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="gender" data-i18n="join_gender">Gender</label>
+            <select id="gender" name="gender" required aria-required="true" aria-describedby="error-gender">
+              <option value="" data-i18n="join_select_option">Choose an option</option>
+              <option value="Female" data-i18n="join_gender_female">Female</option>
+              <option value="Male" data-i18n="join_gender_male">Male</option>
+              <option value="Other" data-i18n="join_gender_other">Other</option>
+              <option value="Prefer not to say" data-i18n="join_gender_prefer_not">Prefer not to say</option>
+            </select>
+            <span class="field-error" id="error-gender" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <label for="email" data-i18n="join_email">Email address</label>
+            <div class="email-entry-row">
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required aria-required="true" aria-describedby="error-email">
+              <button class="button button-secondary email-code-button" id="send-email-code" type="button" data-i18n="join_send_code">Send code</button>
+              <span class="email-verified-badge" id="email-verified-badge" hidden><span aria-hidden="true">✓</span> <span data-i18n="join_email_verified">Verified</span></span>
+            </div>
+            <span class="field-error" id="error-email" aria-live="polite"></span>
+            <p class="email-otp-status" id="email-otp-status" role="status" aria-live="polite"></p>
+            <div class="email-otp" id="email-otp" hidden>
+              <label for="email-code" data-i18n="join_email_code">6-digit email code</label>
+              <div class="email-entry-row">
+                <input id="email-code" name="emailCode" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" aria-describedby="email-otp-status">
+                <button class="button button-secondary" id="verify-email-code" type="button" data-i18n="join_verify_code">Verify code</button>
+                <button class="button button-secondary" id="edit-email" type="button" data-i18n="join_edit_email" hidden>Edit email</button>
+              </div>
+              <p class="email-otp-countdown" id="email-otp-countdown" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="phone" data-i18n="join_phone">Mobile phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" required aria-required="true" aria-describedby="error-phone">
+            <span class="field-error" id="error-phone" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <label for="province" data-i18n="join_province">Province</label>
+            <select id="province" name="province" required aria-required="true" aria-describedby="error-province">
+              <option value="" data-i18n="join_select_option">Choose an option</option>
+              <option value="Koshi" data-i18n="join_province_koshi">Koshi</option>
+              <option value="Madhesh" data-i18n="join_province_madhesh">Madhesh</option>
+              <option value="Bagmati" data-i18n="join_province_bagmati">Bagmati</option>
+              <option value="Gandaki" data-i18n="join_province_gandaki">Gandaki</option>
+              <option value="Lumbini" data-i18n="join_province_lumbini">Lumbini</option>
+              <option value="Karnali" data-i18n="join_province_karnali">Karnali</option>
+              <option value="Sudurpashchim" data-i18n="join_province_sudurpashchim">Sudurpashchim</option>
+            </select>
+            <span class="field-error" id="error-province" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <label id="district-label" for="district" data-i18n="join_district">District</label>
+            <div class="district-picker">
+              <input class="district-trigger" id="district" type="text" role="combobox" autocomplete="off" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="district-option-list" aria-labelledby="district-label" aria-describedby="error-district" data-i18n="join_select_option" data-i18n-attribute="placeholder" placeholder="Choose an option">
+              <span class="district-chevron" aria-hidden="true"></span>
+              <div class="district-options" id="district-options" hidden>
+                <div class="district-option-list" id="district-option-list" role="listbox" aria-labelledby="district-label"></div>
+                <p class="district-no-results" id="district-no-results" role="status" hidden></p>
+              </div>
+              <select id="district-value" name="district" autocomplete="address-level2" required aria-hidden="true" tabindex="-1" hidden>
+                <option value="" data-i18n="join_select_option">Choose an option</option>
+              </select>
+            </div>
+            <span class="field-error" id="error-district" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <label for="address" data-i18n="join_address">Municipality / full address</label>
+            <textarea id="address" name="address" autocomplete="street-address" maxlength="300" required aria-required="true" aria-describedby="error-address"></textarea>
+            <span class="field-error" id="error-address" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <label for="current-status" data-i18n="join_status">Current status</label>
+            <select id="current-status" name="currentStatus" required aria-required="true" aria-describedby="error-current-status">
+              <option value="" data-i18n="join_select_option">Choose an option</option>
+              <option value="Nursing student" data-i18n="join_status_student">Nursing student</option>
+              <option value="New graduate" data-i18n="join_status_graduate">New graduate</option>
+              <option value="Practicing nurse" data-i18n="join_status_nurse">Practicing nurse</option>
+              <option value="Other" data-i18n="join_status_other">Other</option>
+            </select>
+            <span class="field-error" id="error-current-status" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <label for="workplace" data-i18n="join_workplace">College / workplace</label>
+            <input id="workplace" name="collegeWorkplace" type="text" autocomplete="organization" maxlength="150" required aria-required="true" aria-describedby="error-workplace">
+            <span class="field-error" id="error-workplace" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <label for="council-number" data-i18n="join_council_number">Nepal Nursing Council registration number (optional)</label>
+            <input id="council-number" name="councilNumber" type="text" autocomplete="off" maxlength="100">
+          </div>
+          <div class="form-field">
+            <label for="reason" data-i18n="join_reason">Why do you want to join? (optional)</label>
+            <textarea id="reason" name="reason" maxlength="500" aria-describedby="reason-hint error-reason"></textarea>
+            <span class="field-hint" id="reason-hint" data-i18n="join_reason_hint">Up to 500 characters</span>
+            <span class="field-error" id="error-reason" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <label class="consent-row" for="consent">
+              <input id="consent" name="consent" type="checkbox" required aria-required="true" aria-describedby="error-consent">
+              <span data-i18n="join_consent">I agree that YNAN may store and use these details for membership purposes.</span>
+            </label>
+            <span class="field-error" id="error-consent" aria-live="polite"></span>
+            <a href="privacy.html" data-i18n="join_privacy_link">Read our privacy notice</a>
+          </div>
+          <div class="turnstile-area" id="turnstile-area"></div>
+          <div class="honeypot-field" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <input id="form-started-at" name="startedAt" type="hidden">
+          <input id="turnstile-token" name="turnstileToken" type="hidden">
+          <div class="membership-actions">
+            <button class="button button-primary" id="submit-application" type="submit" data-i18n="join_submit" disabled>Submit application</button>
+          </div>
+        </form>
+        <noscript><p>JavaScript must be enabled to submit this application.</p></noscript>
+      </div>
+    </div>
+  </main>
+  <footer class="footer footer-centered">
+    <div class="container">
+      <a class="brand" href="index.html#home" aria-label="YNAN home">
+        <img class="brand-mark" src="assets/ynan-logo.jpg" alt="" width="72" height="72">
+        <span><span class="brand-name">YNAN</span><span class="brand-full" data-i18n="brand_full">Young Nurses Association of Nepal</span></span>
+      </a>
+      <p class="about-footer-tagline">Your Voice. Your Growth. Our Mission.</p>
+      <div class="footer-bottom"><span>© <span id="year"></span> <span data-i18n="footer_org">Young Nurses Association of Nepal. All rights reserved.</span></span></div>
+    </div>
+  </footer>
+  <script src="assets/js/translations.js" defer></script>
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/membership.js?v=20261102-1336" defer></script>
+</body>
+</html>
