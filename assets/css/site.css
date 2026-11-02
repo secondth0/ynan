@@ -418,9 +418,9 @@
     .form-field .district-trigger:disabled { background: #f3f5f4; color: var(--muted); cursor: not-allowed; }
     .form-field .district-trigger:focus::placeholder { color: transparent; }
     .district-chevron { position: absolute; z-index: 2; top: 20px; right: 17px; width: 9px; height: 9px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); pointer-events: none; }
-    .district-options { position: absolute; z-index: 10; top: calc(100% + 4px); right: 0; left: 0; max-height: min(320px, 50vh); overflow-y: auto; border: 1px solid #87999A; border-radius: 3px; background: #fff; box-shadow: 0 8px 20px rgba(11,37,69,.16); }
+    .district-options { position: absolute; z-index: 10; top: calc(100% + 4px); right: 0; left: 0; max-height: min(320px, 50vh); overflow-y: auto; border: 1px solid #87999A; border-radius: 3px; background: #fff; box-shadow: 0 8px 20px rgba(11,37,69,.16); -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-y; }
     .district-options[hidden] { display: none; }
-    .district-option-list { max-height: calc(min(320px, 50vh) - 48px); overflow-y: auto; }
+    .district-option-list { max-height: calc(min(320px, 50vh) - 48px); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-y; }
     .district-option { display: block; width: 100%; padding: 10px 13px; border: 0; background: #fff; color: var(--ink); font: inherit; font-size: 16px; text-align: left; cursor: pointer; }
     .district-option:hover, .district-option[aria-selected="true"] { background: var(--mint); }
     .district-no-results { margin: 0; padding: 12px 13px; color: var(--muted); font-size: 14px; }
