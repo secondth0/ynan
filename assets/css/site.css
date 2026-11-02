@@ -456,7 +456,7 @@
           animation: province-draw 1.2s ease forwards;
         }
         .province-shape:hover,
-        .province-shape:focus-visible,
+        .province-link:focus-visible .province-shape,
         .province-shape.is-active {
           filter: drop-shadow(0 10px 16px rgba(11, 37, 69, 0.15));
           transform: translateY(-8px) scale(1.03);
@@ -467,13 +467,8 @@
         }
         .province-shape.is-active + .province-scene,
         .province-shape:hover + .province-scene,
-        .province-shape:focus-visible + .province-scene {
+        .province-link:focus-visible .province-scene {
           transform: translateY(-8px) scale(1.08);
-        }
-        .province-shape:focus-visible {
-          stroke-width: 2;
-          outline: 2px solid rgba(11, 37, 69, 0.9);
-          outline-offset: 2px;
         }
         .province-hover-chip {
           position: absolute;
@@ -599,7 +594,7 @@
 }
 
 .province-shape:hover,
-.province-shape:focus-visible,
+.province-link:focus-visible .province-shape,
 .province-shape.is-active {
   filter: drop-shadow(0 16px 22px rgba(11, 37, 69, 0.15));
   transform: translateY(-8px) scale(1.03);
@@ -607,31 +602,26 @@
 }
 
 .province-shape[data-province-id="koshi"]:hover,
-.province-shape[data-province-id="koshi"]:focus-visible,
+.province-link:focus-visible .province-shape[data-province-id="koshi"],
 .province-shape[data-province-id="koshi"].is-active { fill: #ff7f6f; }
 .province-shape[data-province-id="madhesh"]:hover,
-.province-shape[data-province-id="madhesh"]:focus-visible,
+.province-link:focus-visible .province-shape[data-province-id="madhesh"],
 .province-shape[data-province-id="madhesh"].is-active { fill: #ffb14d; }
 .province-shape[data-province-id="bagmati"]:hover,
-.province-shape[data-province-id="bagmati"]:focus-visible,
+.province-link:focus-visible .province-shape[data-province-id="bagmati"],
 .province-shape[data-province-id="bagmati"].is-active { fill: #e963a9; }
 .province-shape[data-province-id="gandaki"]:hover,
-.province-shape[data-province-id="gandaki"]:focus-visible,
+.province-link:focus-visible .province-shape[data-province-id="gandaki"],
 .province-shape[data-province-id="gandaki"].is-active { fill: #6abce8; }
 .province-shape[data-province-id="lumbini"]:hover,
-.province-shape[data-province-id="lumbini"]:focus-visible,
+.province-link:focus-visible .province-shape[data-province-id="lumbini"],
 .province-shape[data-province-id="lumbini"].is-active { fill: #68c48c; }
 .province-shape[data-province-id="karnali"]:hover,
-.province-shape[data-province-id="karnali"]:focus-visible,
+.province-link:focus-visible .province-shape[data-province-id="karnali"],
 .province-shape[data-province-id="karnali"].is-active { fill: #a57ee4; }
 .province-shape[data-province-id="sudurpashchim"]:hover,
-.province-shape[data-province-id="sudurpashchim"]:focus-visible,
+.province-link:focus-visible .province-shape[data-province-id="sudurpashchim"],
 .province-shape[data-province-id="sudurpashchim"].is-active { fill: #4ecfc0; }
-
-.province-shape:focus-visible {
-  outline: 3px solid rgba(11, 37, 69, 0.9);
-  outline-offset: 3px;
-}
 
 .province-scene {
   pointer-events: none;
@@ -641,6 +631,10 @@
   fill: transparent;
   stroke: none;
   pointer-events: all;
+}
+
+.province-link:focus {
+  outline: none;
 }
 
 .province-link:focus-visible .province-shape {
@@ -707,7 +701,7 @@
   }
 
   .province-shape:hover,
-  .province-shape:focus-visible,
+  .province-link:focus-visible .province-shape,
   .province-shape.is-active {
     transform: none;
   }
