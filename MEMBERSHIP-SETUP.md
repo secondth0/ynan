@@ -55,12 +55,14 @@ For validation, you can also try an incorrect code, wait five minutes and try an
 
 The script rejects missing/invalid data, a filled honeypot, a form completed in under three seconds, invalid/expired email codes, and duplicate email addresses. A code is locked after five incorrect attempts. Repeated submission with the same request ID does not append another row.
 
-## 6. Share the Sheet and enable optional application notifications
+## 6. Share the Sheet and enable application notifications
 
 - Share the Sheet only with committee members who manage membership. Give edit access only to people who need to maintain records.
+- To receive a notification for each successfully saved application, open Apps Script **Project Settings > Script properties** and add `YNAN_NOTIFICATION_EMAIL` with the notification recipient's email address as its value. Use the address designated by the site owner.
+- The notification contains no applicant details; it only says that a new application was received and directs you to review it in the private Sheet. Notification email is sent after the application row is saved. If the daily email quota is exhausted or email delivery fails, the application remains saved and the issue is logged in Apps Script.
+- After setting the property, save and deploy a new version of the Apps Script web app (see **Updating the script or form** below). The notification uses the same Apps Script email authorization as verification codes.
 - The script does not automatically delete old rows. Set a calendar reminder to delete unsuccessful applications after 12 months and review accepted-member records annually; keep track of application outcomes using the committee's private process.
-- Optional new-application notifications are off by default. To enable them, open Apps Script **Project Settings > Script properties** and add `YNAN_NOTIFICATION_EMAIL` with the committee inbox address as its value.
-- Notifications contain only a short message and no applicant details. Apps Script checks Google's remaining daily email quota before sending. Check Google's current Apps Script quota page if messages stop. Notification email is optional and does not determine whether an application is saved.
+- Apps Script checks Google's remaining daily email quota before sending. Check Google's current Apps Script quota page if messages stop. Notification email does not determine whether an application is saved.
 
 ## 7. Optional Cloudflare Turnstile
 
