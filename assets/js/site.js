@@ -409,10 +409,18 @@ provinceDetails.forEach((contact) => {
 
 if (provinceMap && provinceGroup && provinceMapShell) {
   const ynanProvinceState = window.ynanProvinceState;
+  const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
   const provinceChip = document.createElement("div");
   provinceChip.className = "province-hover-chip";
   provinceChip.setAttribute("hidden", "hidden");
   provinceMapShell.appendChild(provinceChip);
+  let activeProvinceShape = null;
+  let chipProvinceId = null;
+  let chipWidth = 220;
+  let chipHeight = 72;
+  let chipLanguage = currentLanguage;
+  let pendingPointerPosition = null;
+  let chipPositionFrame = 0;
 
   function getProvinceCopy(provinceId) {
     const contact = provinceContactLookup.get(provinceId) || null;
@@ -438,30 +446,14 @@ if (provinceMap && provinceGroup && provinceMapShell) {
     });
   }
 
-  function updateProvinceChip(provinceId, event) {
-    const info = getProvinceCopy(provinceId);
-    const name = info.displayName || getLanguageText("province_contact_coming_soon");
-    const provinceName = info.provinceName || provinceId;
-    const role = info.roleText || getLanguageText("province_contact_role");
-    provinceChip.innerHTML = `
-      <span class="province-chip-province">${provinceName}</span>
-      <span class="province-chip-name">${name}</span>
-      <span class="province-chip-role">${role}</span>
-    `;
-
-    const chipWidth = 220;
-    const chipHeight = 72;
-    provinceChip.hidden = false;
-    provinceChip.classList.add("is-visible");
-    const measuredWidth = provinceChip.getBoundingClientRect().width;
-    const measuredHeight = provinceChip.getBoundingClientRect().height;
+  function positionProvinceChip(provinceId, clientX, clientY) {
     const shellRect = provinceMapShell.getBoundingClientRect();
     let left = 24;
     let top = 24;
 
-    if (event && typeof event.clientX === "number" && typeof event.clientY === "number") {
-      const x = event.clientX - shellRect.left;
-      const y = event.clientY - shellRect.top;
+    if (typeof clientX === "number" && typeof clientY === "number") {
+      const x = clientX - shellRect.left;
+      const y = clientY - shellRect.top;
       const prefersLeft = x > shellRect.width * 0.7;
       left = prefersLeft ? x - chipWidth - 18 : x + 18;
       top = y - chipHeight / 2;
@@ -474,33 +466,85 @@ if (provinceMap && provinceGroup && provinceMapShell) {
       }
     }
 
-    left = Math.min(Math.max(left, 12), Math.max(12, shellRect.width - measuredWidth - 12));
-    top = Math.min(Math.max(top, 12), Math.max(12, shellRect.height - measuredHeight - 12));
+    left = Math.min(Math.max(left, 12), Math.max(12, shellRect.width - chipWidth - 12));
+    top = Math.min(Math.max(top, 12), Math.max(12, shellRect.height - chipHeight - 12));
 
-    provinceChip.style.left = `${left}px`;
-    provinceChip.style.top = `${top}px`;
+    provinceChip.style.transform = `translate3d(${left}px, ${top}px, 0)`;
+  }
+
+  function updateProvinceChip(provinceId, event) {
+    if (chipProvinceId !== provinceId || chipLanguage !== currentLanguage) {
+      const info = getProvinceCopy(provinceId);
+      const name = info.displayName || getLanguageText("province_contact_coming_soon");
+      const provinceName = info.provinceName || provinceId;
+      const role = info.roleText || getLanguageText("province_contact_role");
+      provinceChip.innerHTML = `
+        <span class="province-chip-province">${provinceName}</span>
+        <span class="province-chip-name">${name}</span>
+        <span class="province-chip-role">${role}</span>
+      `;
+      chipProvinceId = provinceId;
+      chipLanguage = currentLanguage;
+      provinceChip.hidden = false;
+      provinceChip.classList.add("is-visible");
+      const chipRect = provinceChip.getBoundingClientRect();
+      chipWidth = chipRect.width;
+      chipHeight = chipRect.height;
+    } else if (provinceChip.hidden) {
+      provinceChip.hidden = false;
+      provinceChip.classList.add("is-visible");
+    }
+
+    positionProvinceChip(
+      provinceId,
+      event && typeof event.clientX === "number" ? event.clientX : undefined,
+      event && typeof event.clientY === "number" ? event.clientY : undefined
+    );
+  }
+
+  function scheduleProvinceChipPosition(event) {
+    pendingPointerPosition = { clientX: event.clientX, clientY: event.clientY };
+    if (chipPositionFrame) {
+      return;
+    }
+    chipPositionFrame = window.requestAnimationFrame(() => {
+      chipPositionFrame = 0;
+      if (pendingPointerPosition && ynanProvinceState.activeProvinceId) {
+        positionProvinceChip(
+          ynanProvinceState.activeProvinceId,
+          pendingPointerPosition.clientX,
+          pendingPointerPosition.clientY
+        );
+      }
+    });
   }
 
   function hideProvinceChip() {
+    if (chipPositionFrame) {
+      window.cancelAnimationFrame(chipPositionFrame);
+      chipPositionFrame = 0;
+    }
+    pendingPointerPosition = null;
     provinceChip.hidden = true;
     provinceChip.classList.remove("is-visible");
-    provinceGroup.querySelectorAll(".province-shape").forEach((shape) => {
-      shape.classList.remove("is-active", "is-dimmed");
-    });
+    provinceChip.innerHTML = "";
+    chipProvinceId = null;
+    if (activeProvinceShape) {
+      activeProvinceShape.classList.remove("is-active", "is-dimmed");
+      activeProvinceShape = null;
+    }
   }
 
   function setProvinceActive(provinceId, event) {
     const activeShape = provinceGroup.querySelector(`[data-province-id="${provinceId}"]`);
-    const allShapes = provinceGroup.querySelectorAll(".province-shape");
-
     ynanProvinceState.activeProvinceId = provinceId;
-    allShapes.forEach((shape) => {
-      const isActive = shape === activeShape;
-      shape.classList.toggle("is-active", isActive);
-      shape.classList.toggle("is-dimmed", !isActive);
-    });
+    if (activeProvinceShape !== activeShape) {
+      activeProvinceShape?.classList.remove("is-active", "is-dimmed");
+      activeShape?.classList.add("is-active");
+      activeProvinceShape = activeShape;
+    }
 
-    if (window.matchMedia("(pointer: coarse)").matches) {
+    if (coarsePointerQuery.matches) {
       return;
     }
 
@@ -594,21 +638,21 @@ if (provinceMap && provinceGroup && provinceMapShell) {
       link.style.cursor = "pointer";
 
       const handlePointerEnter = (event) => {
-        if (window.matchMedia("(pointer: coarse)").matches) {
+        if (coarsePointerQuery.matches) {
           return;
         }
         setProvinceActive(provinceId, event);
       };
 
       const handlePointerMove = (event) => {
-        if (window.matchMedia("(pointer: coarse)").matches || !ynanProvinceState.activeProvinceId) {
+        if (coarsePointerQuery.matches || ynanProvinceState.activeProvinceId !== provinceId) {
           return;
         }
-        updateProvinceChip(provinceId, event);
+        scheduleProvinceChipPosition(event);
       };
 
       const handlePointerLeave = () => {
-        if (window.matchMedia("(pointer: coarse)").matches) {
+        if (coarsePointerQuery.matches) {
           return;
         }
         hideProvinceChip();
@@ -616,18 +660,15 @@ if (provinceMap && provinceGroup && provinceMapShell) {
       };
 
       link.addEventListener("pointerenter", handlePointerEnter);
-      link.addEventListener("mouseenter", handlePointerEnter);
       link.addEventListener("pointermove", handlePointerMove);
-      link.addEventListener("mousemove", handlePointerMove);
       link.addEventListener("pointerleave", handlePointerLeave);
-      link.addEventListener("mouseleave", handlePointerLeave);
       link.addEventListener("focus", (event) => {
-        if (!window.matchMedia("(pointer: coarse)").matches) {
+        if (!coarsePointerQuery.matches) {
           setProvinceActive(provinceId, event);
         }
       });
       link.addEventListener("blur", () => {
-        if (!window.matchMedia("(pointer: coarse)").matches) {
+        if (!coarsePointerQuery.matches) {
           hideProvinceChip();
           ynanProvinceState.activeProvinceId = null;
         }
@@ -670,7 +711,7 @@ if (provinceMap && provinceGroup && provinceMapShell) {
   provinceMap.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
   provinceMapShell.addEventListener("mouseleave", () => {
-    if (window.matchMedia("(pointer: coarse)").matches) {
+    if (coarsePointerQuery.matches) {
       return;
     }
     hideProvinceChip();
