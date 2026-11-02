@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Karnali province contact portrait">
+  <defs>
+    <linearGradient id="bg-karnali" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F4F4F6"/>
+      <stop offset="100%" stop-color="#C8D5DE"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="60" fill="url(#bg-karnali)"/>
+  <circle cx="60" cy="42" r="20" fill="#0B2545" opacity="0.92"/>
+  <path d="M24 96c7-16 22-24 36-24s29 8 36 24" fill="#2E7D7E" opacity="0.9"/>
+  <text x="60" y="112" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#0B2545" letter-spacing="1">KARNALI</text>
+</svg>
