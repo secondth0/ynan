@@ -685,9 +685,19 @@ if (provinceMap && provinceGroup && provinceMapShell) {
       });
 
       link.appendChild(path);
+      let linkedPathData = pathData;
+      if (provinceId === "sudurpashchim" && Array.isArray(window.YNAN_KALAPANI_REGION)) {
+        const regionPathData = buildPathFromPolygon([window.YNAN_KALAPANI_REGION]);
+        const regionPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        regionPath.setAttribute("d", regionPathData);
+        regionPath.setAttribute("class", "province-region-extension");
+        regionPath.setAttribute("aria-hidden", "true");
+        link.appendChild(regionPath);
+        linkedPathData = `${pathData} ${regionPathData}`;
+      }
       link.appendChild(sceneGroup);
       const hitArea = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      hitArea.setAttribute("d", pathData);
+      hitArea.setAttribute("d", linkedPathData);
       hitArea.setAttribute("class", "province-hit-area");
       hitArea.setAttribute("fill", "transparent");
       hitArea.setAttribute("pointer-events", "all");

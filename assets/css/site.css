@@ -447,6 +447,11 @@
         .province-shape[data-province-id="lumbini"] { fill: rgba(83, 185, 125, 0.8); }
         .province-shape[data-province-id="karnali"] { fill: rgba(141, 104, 213, 0.8); }
         .province-shape[data-province-id="sudurpashchim"] { fill: rgba(57, 184, 182, 0.8); }
+        .province-region-extension {
+          fill: rgba(57, 184, 182, 0.8);
+          stroke: none;
+          pointer-events: none;
+        }
         .province-scene {
           pointer-events: none;
           transform-box: fill-box;
