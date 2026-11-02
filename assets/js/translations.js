@@ -34,7 +34,7 @@
         story_view: "View Facebook post ↗",
         province_contact_eyebrow: "Meet your province contact",
         province_contact_title: "Meet your province contact",
-        province_contact_intro: "Hover over a province to meet the YNAN member who coordinates there. The map includes Kalapani, Lipulekh, and Limpiyadhura in Sudurpashchim.",
+        province_contact_intro: "Hover over a province to meet the YNAN member who coordinates there.",
         province_contact_role: "Province Coordinator",
         province_contact_coming_soon: "Contact coming soon",
         join_button: "Become a Member",
