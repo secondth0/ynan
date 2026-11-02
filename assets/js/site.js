@@ -660,6 +660,25 @@ if (provinceMap && provinceGroup && provinceMapShell) {
         ynanProvinceState.activeProvinceId = null;
       };
 
+      const handleSelectProvince = (event) => {
+        if (coarsePointerQuery.matches) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          if (ynanProvinceState.activeProvinceId === provinceId) {
+            hideProvinceChip();
+            ynanProvinceState.activeProvinceId = null;
+            return;
+          }
+
+          setProvinceActive(provinceId, event);
+          updateProvinceChip(provinceId, event);
+          return;
+        }
+
+        window.open(href, "_blank", "noopener,noreferrer");
+      };
+
       link.addEventListener("pointerenter", handlePointerEnter);
       link.addEventListener("pointermove", handlePointerMove);
       link.addEventListener("pointerleave", handlePointerLeave);
@@ -674,13 +693,14 @@ if (provinceMap && provinceGroup && provinceMapShell) {
           ynanProvinceState.activeProvinceId = null;
         }
       });
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.open(href, "_blank", "noopener,noreferrer");
-      });
+      link.addEventListener("click", handleSelectProvince);
       link.addEventListener("keydown", (event) => {
         if (event.key === " " && !event.repeat) {
           event.preventDefault();
+          if (coarsePointerQuery.matches) {
+            handleSelectProvince(event);
+            return;
+          }
           window.open(href, "_blank", "noopener,noreferrer");
         }
       });
@@ -723,6 +743,14 @@ if (provinceMap && provinceGroup && provinceMapShell) {
 
   provinceMapShell.addEventListener("mouseleave", () => {
     if (coarsePointerQuery.matches) {
+      return;
+    }
+    hideProvinceChip();
+    ynanProvinceState.activeProvinceId = null;
+  });
+
+  provinceMapShell.addEventListener("click", (event) => {
+    if (!coarsePointerQuery.matches || event.target.closest(".province-link")) {
       return;
     }
     hideProvinceChip();
