@@ -409,7 +409,13 @@
     .form-field label, .form-field legend { display: block; margin-bottom: 7px; color: var(--ink); font-size: 15px; font-weight: 700; }
     .form-field input:not([type="radio"]):not([type="checkbox"]), .form-field select, .form-field textarea { display: block; width: 100%; min-height: 50px; padding: 11px 13px; border: 1px solid #87999A; border-radius: 3px; background: #fff; color: var(--ink); font: inherit; font-size: 16px; }
     .form-field textarea { min-height: 120px; resize: vertical; }
-    #address { height: 50px; min-height: 50px; padding-block: 8px; }
+    #address {
+      height: 72px;
+      min-height: 72px;
+      max-height: 160px;
+      padding-block: 8px;
+      resize: vertical;
+    }
     .district-picker { position: relative; }
     .form-field select[hidden] { display: none; }
     .select-picker { position: relative; }
