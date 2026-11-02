@@ -30,6 +30,10 @@ const enhancedSelects = ["gender", "province", "current-status"].map(enhanceSele
 const provinceSelect = document.getElementById("province-value");
 const districtTrigger = document.getElementById("district");
 const districtSelect = document.getElementById("district-value");
+if (districtTrigger) {
+  districtTrigger.readOnly = true;
+  districtTrigger.setAttribute("inputmode", "none");
+}
 const districtOptions = document.getElementById("district-options");
 const districtOptionList = document.getElementById("district-option-list");
 const districtNoResults = document.getElementById("district-no-results");
@@ -129,6 +133,8 @@ function enhanceSelect(id) {
   input.type = "text";
   input.className = "select-picker-input";
   input.autocomplete = "off";
+  input.readOnly = true;
+  input.setAttribute("inputmode", "none");
   input.setAttribute("role", "combobox");
   input.setAttribute("aria-autocomplete", "list");
   input.setAttribute("aria-haspopup", "listbox");
@@ -256,7 +262,7 @@ function enhanceSelect(id) {
       closeMenu();
     }
   });
-  list.addEventListener("pointerdown", (event) => {
+  list.addEventListener("click", (event) => {
     const option = event.target.closest('[role="option"]');
     if (!option) return;
     event.preventDefault();
@@ -902,7 +908,7 @@ districtTrigger.addEventListener("input", () => {
   });
   filterDistrictOptions();
 });
-districtOptionList.addEventListener("pointerdown", (event) => {
+districtOptionList.addEventListener("click", (event) => {
   const option = event.target.closest('[role="option"]');
   if (!option) return;
   event.preventDefault();
