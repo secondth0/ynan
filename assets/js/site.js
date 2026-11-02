@@ -448,6 +448,11 @@ if (provinceMap && provinceGroup && provinceMapShell) {
   }
 
   function positionProvinceChip(provinceId, clientX, clientY) {
+    if (coarsePointerQuery.matches) {
+      provinceChip.style.transform = "";
+      return;
+    }
+
     const shellRect = provinceMapShell.getBoundingClientRect();
     let left = 24;
     let top = 24;

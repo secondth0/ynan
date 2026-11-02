@@ -723,6 +723,17 @@
   stroke-width: 4;
 }
 
+@media (pointer: coarse) {
+  .province-hover-chip {
+    position: static;
+    width: 100%;
+    max-width: none;
+    margin-top: 12px;
+    box-sizing: border-box;
+    transform: none !important;
+  }
+}
+
 @keyframes province-draw {
   from { stroke-dashoffset: 1400; }
   to { stroke-dashoffset: 0; }
